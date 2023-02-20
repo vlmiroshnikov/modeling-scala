@@ -12,6 +12,7 @@ opaque type Money = Double
 object Money:
   def of(d: Double): Money = d
   val zero: Money          = 0.0
+  given Show[Money]        = Show.show(d => f"$d%.2f")
 
 extension (a: Money)
   infix def -(b: Money): Money = a - b

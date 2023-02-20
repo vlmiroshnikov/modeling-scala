@@ -11,7 +11,8 @@ case class Report(bugetProfit: Money, netProfit: Money, difference: Money)
 object Report:
 
   given Show[Report] =
-    Show.show(r => s"Profit = ${r.bugetProfit}, Net = ${r.netProfit}, Diff = ${r.difference}")
+    Show.show(r =>
+      s"Profit = ${r.bugetProfit.show}, Net = ${r.netProfit.show}, Diff = ${r.difference.show}")
 
 given Monoid[Report] = new Monoid[Report] {
   def empty: Report = Report(Money.zero, Money.zero, Money.zero)
