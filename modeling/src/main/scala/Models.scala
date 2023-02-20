@@ -21,7 +21,7 @@ opaque type ProjectId = Int
 
 object ProjectId:
   def of(v: Int): ProjectId = v
-  given Show[ProjectId]     = Show.show(_.toString())
+  given Show[ProjectId]     = Show.fromToString
 
 case class Budget(income: Money, expenditure: Money)
 

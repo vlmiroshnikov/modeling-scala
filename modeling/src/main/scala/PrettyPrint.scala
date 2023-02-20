@@ -36,25 +36,9 @@ def draw(root: Node[String]): List[String] =
       case t :: ts  => "|" :: shift("+- ", "|  ", draw(t)) ++ drawSubTrees(ts)
 
   def shift(first: String, other: String, s: List[String]): List[String] =
-    s.zip(LazyList(first) ++ LazyList.continually(other)).map((a, b) => b.concat(a))
+    s.zip(first #:: LazyList.continually(other)).map((a, b) => b.concat(a))
 
   root.label :: drawSubTrees(root.siblings)
-
-/*
- /** A 2D String representation of this Tree, separated into lines. */
-  def draw[B >: A](implicit sh: Show[B]): Stream[String] = {
-    implicit val showa: Show[A] = sh contramap (x => x)
-    def drawSubTrees(s: Stream[Tree[A]]): Stream[String] = s match {
-      case Stream.Empty => Stream.Empty
-      case Stream(t) => "|" #:: shift("`- ", "   ", t.draw)
-      case t #:: ts => "|" #:: shift("+- ", "|  ", t.draw) append drawSubTrees(ts)
-    }
-    def shift(first: String, other: String, s: Stream[String]): Stream[String] =
-      s.ʐ <*> ((first #:: other.repeat[Stream]).ʐ ∘ ((_: String) + (_: String)).curried)
-
-    rootLabel.shows #:: drawSubTrees(subForest)
-  }
- */
 
 def asTree[A: Show](pr: Project[A]): Node[String] =
   pr match
