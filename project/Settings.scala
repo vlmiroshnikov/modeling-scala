@@ -3,8 +3,8 @@ import sbt._
 
 object Versions {
   val dotty      = "3.2.2"
-  val cats       = "2.8.0"
-  val catsEffect = "3.3.14"
+  val cats       = "2.9.0"
+  val catsEffect = "3.4.8"
   val munit      = "0.7.29"
 }
 
